@@ -14,7 +14,8 @@ Ses rôles sont :
 
 // Chargement du fichier de configuration
 require_once dirname(__DIR__). "/config/bootstrap.php";
-dd($_ENV);
+dump($_ENV);
+dd("Hello");//équivaut à Dump and Die ==> affiche et stop l'exécution
 
 
     // Création d'une nouvelle instance du noyau de l'application
