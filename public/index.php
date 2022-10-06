@@ -14,15 +14,24 @@ Ses rôles sont :
 
 // Chargement du fichier de configuration
 require_once dirname(__DIR__). "/config/bootstrap.php";
-dump($_ENV);
-dd("Hello");//équivaut à Dump and Die ==> affiche et stop l'exécution
+/*dd($_SERVER); équivaut à Dump and Die ==> affiche et stop l'exécution*/
+
+    if ($_SERVER ['REQUEST_URI']=="/")
+    {
+        dd ("Accueil");
+    }
+    else 
+    {
+        dd ("Autre page");
+    }
 
 
     // Création d'une nouvelle instance du noyau de l'application
-    
+    $kernel = new App\Kernel($container);
 
-    // Soumission de la requête au noyau
-    // Récupération de la réponse
+    //Le frontController demande au noyau de soummetrre la requête et de récupérer la réponse correspondante
+    $response = $kernel->handleRequest();
 
 
     // Envoi de la réponse au navigateur
+
