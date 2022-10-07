@@ -1,6 +1,7 @@
 <?php
 namespace App;
 
+use App\Z\Routing\RouterInterface;
 use Psr\Container\ContainerInterface;
 use App\Z\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -57,6 +58,7 @@ use Symfony\Component\HttpFoundation\Response;
         
         public function handleRequest() : Response
         {
-            dd($this->container->get(Request::class));
+            $router = $this->container->get(RouterInterface::class);
+            dd($router);
         }
     }

@@ -8,7 +8,7 @@ namespace App\Z\Routing;
          * @param array $controllers
          * @return void
          */
-        public function sortRoutesByName($controllers) : void;
+        public function sortRoutesByName(array $controllers) : void;
 
         /**
          * Cette méthode du routeur permet de l'exécuter

@@ -16,14 +16,14 @@ Ses rôles sont :
 require_once dirname(__DIR__). "/config/bootstrap.php";
 /*dd($_SERVER); équivaut à Dump and Die ==> affiche et stop l'exécution*/
 
-    if ($_SERVER ['REQUEST_URI']=="/")
+/*    if ($_SERVER ['REQUEST_URI']=="/")
     {
         dd ("Accueil");
     }
     else 
     {
         dd ("Autre page");
-    }
+    }*/
 
 
     // Création d'une nouvelle instance du noyau de l'application
