@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
          */
         private array $routes = [];
 
+
         /**
          * Cette propriété contient les paramètres de la barre d'url, s'il y en a.
          *
@@ -22,9 +23,16 @@ use Symfony\Component\HttpFoundation\Request;
          */
         private array $parameters = [];
 
+        /**
+         * Cette propriété représente l'objet request.
+         */
+        private $request = [];
+
+
 
         public function __construct(Request $request, array $controllers)
         {
+            $this->request = $request;
             $this->sortRoutesByName($controllers);
         }
 
@@ -73,25 +81,43 @@ use Symfony\Component\HttpFoundation\Request;
          */
         public function run() : ?array
         {
-            foreach ($this->routes as $route)
+            //dd($this->routes);
+            foreach ($this->routes as $route) 
             {
-                if ($this->matchWith($this->request->server->get('REQUEST_URI'), $route['route']->getpath()))
+                if ( $this->matchWith($this->request->server->get('REQUEST_URI'), $route['route']->getPath()) ) 
                 {
-                    if (isset($this->parameters) && !empty($this->parameters))
+                    if ( isset($this->parameters) && !empty($this->parameters) ) 
                     {
-                        return 
-                        [
+                        return [
                             "route" => $route,
                             "parameters" => $this->parameters
                         ];
                     }
-                    return ["route" => $route];
+                    else 
+                    {
+                        return [
+                            "route" => $route,
+                        ];
+                    }
                 }
             }
+
             return null;
         }
+
         public function matchWith($uri_url, $uri_route)
         {
+            $pattern = preg_replace("#{[a-z]+}#", "([0-9a-zA-Z-_]+)", $uri_route);//si tu trouves une lettre et plus dans les accolades, tu remplaces par les chiffres, caractères... et plus dans la barre de l'uri
 
+            $pattern = "#^$pattern$#";
+
+            if ( preg_match($pattern, $uri_url, $matches) ) 
+            {
+                array_shift($matches);//array_shift ==> ça permet de supprimer le premier indice du tableau
+                $this->parameters = $matches;
+                return true;
+                //dd($matches);
+            }
+            return false;
         }
     }

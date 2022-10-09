@@ -34,9 +34,9 @@ use App\Z\Routing\RouteInterface;
         /**
          * Cette propriété représente les méthodes de la route
          *
-         * @var string
+         * @var array
          */
-        private string $methods;
+        private array $methods;
 
 
         /**
@@ -45,7 +45,7 @@ use App\Z\Routing\RouteInterface;
          *
          * @param string $path
          * @param string $name
-         * @param array $methods
+         * @param array  $methods
          */
         public function __construct(string $path, string $name, $methods = ['GET'])
         {
