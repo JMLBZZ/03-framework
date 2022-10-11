@@ -14,7 +14,7 @@ Ses rôles sont :
 
 // Chargement du fichier de configuration
 require_once dirname(__DIR__). "/config/bootstrap.php";
-/*dd($_SERVER); équivaut à Dump and Die ==> affiche et stop l'exécution*/
+//dd($_SERVER); équivaut à Dump and Die ==> affiche et stop l'exécution*/
 
 /*    if ($_SERVER ['REQUEST_URI']=="/")
     {
@@ -34,4 +34,5 @@ require_once dirname(__DIR__). "/config/bootstrap.php";
 
 
     // Envoi de la réponse au navigateur
+    $response->send();
 

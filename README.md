@@ -18,7 +18,8 @@
     - Taper la commande : 
         composer install
     - Démarrer le serveur en tapant la commande : 
-        php -S localhost:8000 -d display_errors=1 -t public/
+        composer serve
+        (ou => php -S localhost:8000 -d display_errors=1 -t public/)
     - Se rendre dans le navigateur
     - Ouvrir un nouvel onglet
     - Taper dans la barrer d'url : 
