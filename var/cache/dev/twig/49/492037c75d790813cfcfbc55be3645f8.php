@@ -24,31 +24,33 @@ class __TwigTemplate_357a9e93a2d7a5ed414f5c6a402df8b1 extends Template
 
         $this->source = $this->getSourceContext();
 
-        $this->parent = false;
-
         $this->blocks = [
+            'main' => [$this, 'block_main'],
         ];
+    }
+
+    protected function doGetParent(array $context)
+    {
+        // line 1
+        return "themes/base.html.twig";
     }
 
     protected function doDisplay(array $context, array $blocks = [])
     {
         $macros = $this->macros;
-        // line 1
-        echo "<!DOCTYPE html>
-<html lang=\"en\">
-<head>
-    <meta charset=\"UTF-8\">
-    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">
-    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
-    <title>test</title>
-</head>
-<body>
-    <h1>Hello ";
-        // line 10
+        $this->parent = $this->loadTemplate("themes/base.html.twig", "country/index.html.twig", 1);
+        $this->parent->display($context, array_merge($this->blocks, $blocks));
+    }
+
+    // line 3
+    public function block_main($context, array $blocks = [])
+    {
+        $macros = $this->macros;
+        // line 4
+        echo "    <h1 class=\"text-center text-danger my-3\">Salut la ";
         echo twig_escape_filter($this->env, ($context["pays"] ?? null), "html", null, true);
-        echo "!</h1>
-</body>
-</html>";
+        echo "</h1>
+";
     }
 
     public function getTemplateName()
@@ -63,7 +65,7 @@ class __TwigTemplate_357a9e93a2d7a5ed414f5c6a402df8b1 extends Template
 
     public function getDebugInfo()
     {
-        return array (  48 => 10,  37 => 1,);
+        return array (  50 => 4,  46 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
